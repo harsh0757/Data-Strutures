@@ -1,0 +1,8 @@
+-->Linear data-Structure formed by collection of nodes
+-->Node : combination of data and address of next node
+
+Why LL is needed?
+-->Dynamic data-Structure
+-->We can grow and shrink on run-time
+-->No memory wastage
+-->insertion and deletion is easy becasue no shift needed
