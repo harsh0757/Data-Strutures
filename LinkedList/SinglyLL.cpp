@@ -11,6 +11,15 @@ public:
         this->data = data;
         this->next = NULL;  
     }
+//destructor
+    ~Node(){
+        int value = this->data;
+        if(this->next != NULL){
+            delete next;
+            this->next = NULL;   
+        }
+        cout<<"Memory is free for node with data "<<value <<endl;
+    }
 };
 
 void insertAtStart(int data, Node* &start){
@@ -53,6 +62,31 @@ void insertAtPosition(Node* &start, Node* last, int position, int data){
     temp->next = nodeToInsert;
 }
 
+void deleteNode(int position, Node* start){
+//deleting start node
+    if(position == 1){
+        Node* temp = start;
+        start = start->next;
+        temp->next = NULL;
+        delete temp;
+    }
+
+//deleting middle and last node
+     Node* curr = start;
+     Node* prev = NULL;
+
+     int count = 1;
+     while(count < position){
+        prev = curr;
+        curr = curr->next;
+        count++;
+     }
+
+     prev->next = curr->next;
+     curr->next = NULL;
+     delete curr;
+}
+
 void print(Node* &start){
     if(start == NULL){
         cout<<"List is Empty"<<endl;
@@ -79,5 +113,9 @@ int main(){
     insertAtLast(15,last);
     print(start);
     insertAtPosition(start, last, 4, 8);
+    print(start);
+    deleteNode(4,start);
+    print(start);
+    deleteNode(2,start);
     print(start);
 }
