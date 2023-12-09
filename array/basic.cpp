@@ -1,8 +1,12 @@
 #include <iostream>
 using namespace std;
 
-void printArray(){
-
+void printArray(int arr[], int size){
+    cout<<"Priting the array"<<endl;
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<endl;
+    }
+    cout<<"printing done";
 }
 
 int main(){
@@ -20,6 +24,12 @@ int main(){
     cout << "value at 2 index " << arr[4]<<endl;
 
     int third[15] = {2,7};
+    
+    // initialising all locations with 0
+    int forth[10] = {0};
+    // initialising all locations with 1
+    int fifth[10] = {1}; //not possible
+    printArray(fifth, 10);
     int n = 15;
     //print the array
     for(int i=0;i<n;i++){
