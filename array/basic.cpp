@@ -8,6 +8,13 @@ void printArray(int arr[], int size){
     }
     cout<<"printing done";
 }
+void printArrayCh(char arr[], int size){
+    cout<<"Priting the array"<<endl;
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<endl;
+    }
+    cout<<"printing done";
+}
 
 int main(){
     //declare
@@ -30,11 +37,16 @@ int main(){
     // initialising all locations with 1
     int fifth[10] = {1}; //not possible
     printArray(fifth, 10);
+    cout<<endl;
     int n = 15;
     //print the array
-    for(int i=0;i<n;i++){
-        cout<<third[i]<<" ";
-    }
+
+    char ch[5] = {'a','b','c','d','e'};
+    cout<<ch[3]<<endl;
+    printArrayCh(ch,5);
+    // for(int i=0;i<n;i++){
+    //     cout<<third[i]<<" ";
+    // }
     cout<<endl;
 
 
