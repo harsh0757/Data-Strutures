@@ -9,14 +9,14 @@ void print(int arr[], int size){
 }
 
 void arrayReverse(int arr[], int size){
-    int i = 0;
-    int j = size-1;
+    int start = 0;
+    int end = size-1;
 
-    while(i<=j){
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-        i++;j--;
+    while(start<end){
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;end--;
     }
 }
 
