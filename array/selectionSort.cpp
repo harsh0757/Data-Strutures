@@ -1,5 +1,6 @@
 // different rounds/passes
 // smallest element placed to the right position
+//use for small size of array
 /*first consider the first element as smallest one then store the index in minIndex
 if smallest found then swap the index with i;*/
 #include <iostream>
