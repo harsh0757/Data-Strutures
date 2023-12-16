@@ -1,6 +1,7 @@
 // divide and conquer
 // recursively implement
 // approaches 1.create new array and copy values 2.use indexes
+///applications, inversion count problem solve, use indexes to solve
 #include <iostream>
 using namespace std;
 
@@ -69,6 +70,8 @@ void merge(int *arr, int s, int e)
         mainArrayIndex++;
         index2++;
     }
+    delete []first;
+    delete []second;
 }
 
 void mergeSort(int *arr, int start, int end)
