@@ -1,4 +1,4 @@
-git #include<iostream>
+#include<iostream>
 using namespace std;
 
 bool linearSearch(int arr[], int size, int target){
