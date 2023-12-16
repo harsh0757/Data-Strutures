@@ -2,6 +2,7 @@
 //in left part small elements in right part big elements
 //    <a |a| >a
 //step-->1 partition step-->2 recusrsion
+//avg case : o(nlogn)   best case : o(nlogn)   worst case : o(n2)
 #include <iostream>
 using namespace std;
 
