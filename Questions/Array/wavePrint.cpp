@@ -3,18 +3,18 @@ using namespace std;
 
 void wavePrint(int arr[][3], int size){
     for(int j=0;j<size;j++){
-        if(j&1){
+        if(j%2 == 0){
+            //even index -> top to bottom
+                for(int i=0;i<size;i++){
+                cout<<arr[i][j]<<" ";
+            }
+        } else {
             //odd index -> bottom to top
             for(int i = size-1;i>=0;i--){
                 cout<<arr[i][j]<<" ";
             }
-        } else {
-            //0 or even index -> tp to bottom
-            for(int i=0;i<size;i++){
-                cout<<arr[i][j]<<" ";
-            }
         }
-    }
+    }cout<<endl;
 }
 
 int main(int argc, char const *argv[])
