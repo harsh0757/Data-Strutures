@@ -1,21 +1,34 @@
-// 1 2 3 
-// 4 5 6 
-// 7 8 9 
-
-#include<iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
+// *****
+// ****
+// ***
+// **
+// *
+////Link code studio --> https://bit.ly/3WXGSDD
 
-int main(){
-    int N;
-    cin>>N;
-    int value = 1;
-
-    for(int i=1;i<=N;i++){
-        for(int j=1;j<=N;j++){
-            cout<<value<<" ";
-            value++;
+void print(int n)
+{
+    for(int i=1;i<=n;i++){
+        for (int j=n;j>=i;j--){
+            // for(int j=0;j<n-i+1;j++)
+            cout<<"* ";
         }
         cout<<endl;
+    }
+}
+
+int main()
+{
+    int t;
+    cout << "Enter the number of Test cases : " << endl;
+    cin >> t;
+
+    for (int i = 0; i < t; i++)
+    {
+        int n;
+        cout << "Enter for " << i << "th test case " << endl;
+        cin >> n;
+        print(n);
     }
 }
