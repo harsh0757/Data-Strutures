@@ -52,4 +52,5 @@ int main(){
     for(int i=0;i<v.size();i++){
         print(v[i]);
     }
+    cout<<v[0][1]; // see what the indexs are representing and use the fucntion accordingly
 }

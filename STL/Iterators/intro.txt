@@ -1,0 +1,12 @@
+Iterators points to the element of containers in STL.
+
+Iterator pointing to first index is .begin() --> v[0]
+.end() will point to next to the last element  --> next to last
+
+(it + 1) and (it++) difference
+it++ --> it will move to next Iterator
+it + 1 --> move to next location means it moves to 0 to 1 index
+
+in vector case both are same becuase of contigous memory
+
+***in maps and sets the scenario is different (it + 1 ) will be invalid location  discontinous location***
