@@ -1,0 +1,8 @@
+Range-based loop : A range-based loop is a type of loop that automatically iterates over a sequence (such as an array, list, or range of numbers)
+without the need for manually specifying the index or counter. It simplifies the code for traversing through each element in the sequence.
+
+Auto keyword : The auto keyword in C++ is used to automatically deduce the type of a variable from its initializer (the value it's being assigned). 
+It simplifies code and reduces redundancy, especially when the type is long or complex.
+
+
+for pairs or any data type we can use auto
