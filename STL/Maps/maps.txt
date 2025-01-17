@@ -1,0 +1,16 @@
+Maps stores key value pair
+it basically creates a mappping it stores in sorted order
+not is the continuous order
+
+syntax: 
+map<datatype, datatype> m;
+how to store
+
+m[key] = value;
+m.insert({pair});
+
+
+unordered Maps
+no order of values 
+
+multimaps
