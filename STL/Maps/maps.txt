@@ -14,3 +14,8 @@ unordered Maps
 no order of values 
 
 multimaps
+
+if you remove value part from maps it will become set --> collection of some elements
+1.Normal set 
+2.unordered set
+3.Multisets
