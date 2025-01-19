@@ -14,7 +14,7 @@ int main(){
         multiset<long long> bags;
 
         for(int i=0;i<n;i++){
-            int candy_cnt;
+            long long candy_cnt;
             cin>>candy_cnt;
             bags.insert(candy_cnt);
         }
