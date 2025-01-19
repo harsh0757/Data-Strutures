@@ -1,51 +1,59 @@
 #include<iostream>
 using namespace std;
 
-class stack{
-    public:
-    int *arr, top, size;
-
-    stack(int size){
+class Stack {
+    int size;
+    int *arr;
+    int top;
+public:
+    Stack(int size){
         this->size = size;
         top = -1;
         arr = new int[size];
     }
 
-    void push(int element){
-        if(size - top > 1){
-            top++;
-            arr[top] = element;
-        }
-        else{
-            cout<<"Stack OverFlow"<<endl;
-        }
+    ~Stack(){
+        delete[] arr;
     }
 
-    void pop(){
-        if(top > -1){
-            top--;
+    void Push(int x){
+        if(top == size - 1) {
+            cout<<"Stack is full"<<endl;
+            return;
         }
-        else{
-            cout<<"Stack underflow"<<endl;
-        }
+        top = top + 1;
+        arr[top] = x;
     }
-
-    int peek(){
-        if(top>0 && top<size){
-        return arr[top];
-        }
-        else{
+    void Top(){
+        if(top == -1){
             cout<<"Stack is empty"<<endl;
-            return -1;
+            return;
         }
+        cout<<arr[top]<<endl;
     }
-
-    bool isEmpty(){
-
+    void pop(){
+        if(top == -1){
+            cout<<"No space in the stack"<<endl;
+        }
+        cout<<"Element removed : "<<arr[top]<<endl;
+        top = top - 1;
+    }
+    void Size(){
+        cout<<"Size of stack is : "<<top + 1<<endl;
     }
 };
 
-
 int main(){
-
+    Stack st(4);
+    st.Push(5);
+    st.Push(6);
+    st.Push(7);
+    st.Push(8);
+    st.Push(9);
+    st.Push(10);
+    st.Top();
+    st.pop();
+    st.Top();
+    st.Size();
+    return 0;
 }
