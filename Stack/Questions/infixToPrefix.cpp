@@ -1,7 +1,7 @@
 #include<iostream>
 #include<stack>
 using namespace std;
-
+//pending
 string reverseString(string s){
     string reversed = "";
     for(int i = s.length() - 1; i >= 0; i--){
