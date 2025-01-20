@@ -2,6 +2,14 @@
 #include<stack>
 using namespace std;
 
+bool operand(char c){
+    if((c>= 'A' && c<='Z') || (c>= 'a' && c<='z') || (c>= '0' && c<='9')) {
+        return true;
+    }
+    return false;
+}
+
+
 int priority(char c) {
     if (c == '+' || c == '-') {
         return 1;
@@ -19,9 +27,7 @@ string infixToPostfix(string s){
     int i=0;
     while(i<s.size()){  //O(n)
     //if it is operand
-        if((s[i] >= 'A' && s[i]<='Z') ||
-          (s[i] >= 'a' && s[i]<='z') ||
-          (s[i] >= '0' && s[i]<='9')) ans += s[i];
+        if(operand(s[i])) ans += s[i];
           else if(s[i] == '(') st.push(s[i]); 
           else if(s[i] == ')'){
             while(!st.empty() && st.top() != '('){
