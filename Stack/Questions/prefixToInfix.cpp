@@ -23,7 +23,7 @@ void prefixToInfix(string s){
             st.pop();
             string t2 = st.top();
             st.pop();
-            string conString = '(' + t1 + s[i] + t2 + ')';
+            string conString = '(' + t1 + s[i] + t2 + ')';  //O(N1 + N2)
             st.push(conString);
         }
         i--;
