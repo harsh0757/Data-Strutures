@@ -10,20 +10,20 @@ bool operand(char c){
     return false;
 }
 
-void prefixToInfix(string s){
+void prefixToPostfix(string s){
     stack<string> st;
     string ans;
-    int i=s.size() - 1;
+    int i=s.length() - 1;
     while(i>=0){  //O(n)
     //if it is operand
         if(operand(s[i])) {
-            st.push(string(1, s[i]));  //st.push(string(1, s[i])); converts the character s[i] to a string of length 1
+            st.push(string(1, s[i]));
         } else {
             string t1 = st.top();
             st.pop();
             string t2 = st.top();
             st.pop();
-            string conString = '(' + t1 + s[i] + t2 + ')';  //O(N1 + N2)
+            string conString = t1 +  t2 + s[i];  //O(N1 + N2)
             st.push(conString);
         }
         i--;
@@ -32,7 +32,6 @@ void prefixToInfix(string s){
 }
 
 int main(){
-    // string str = "AB-DE+F*/";
-    string str = "*+PQ-MN";
-    prefixToInfix(str);
+    string str = "/-AB*+DEF";
+    prefixToPostfix(str);
 }

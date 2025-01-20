@@ -10,29 +10,28 @@ bool operand(char c){
     return false;
 }
 
-void prefixToInfix(string s){
+void postfixToPrefix(string s){
     stack<string> st;
     string ans;
-    int i=s.size() - 1;
-    while(i>=0){  //O(n)
+    int i=0;
+    while(i<s.length()){  //O(n)
     //if it is operand
         if(operand(s[i])) {
-            st.push(string(1, s[i]));  //st.push(string(1, s[i])); converts the character s[i] to a string of length 1
+            st.push(string(1, s[i]));
         } else {
             string t1 = st.top();
             st.pop();
             string t2 = st.top();
             st.pop();
-            string conString = '(' + t1 + s[i] + t2 + ')';  //O(N1 + N2)
+            string conString = s[i] + t2 +  t1;  //O(N1 + N2)
             st.push(conString);
         }
-        i--;
+        i++;
     }
     cout<<st.top()<<endl;
 }
 
 int main(){
-    // string str = "AB-DE+F*/";
-    string str = "*+PQ-MN";
-    prefixToInfix(str);
+    string str = "AB-DE+F*/";
+    postfixToPrefix(str);
 }
