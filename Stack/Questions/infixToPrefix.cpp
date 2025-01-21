@@ -24,7 +24,7 @@ string swapBrackets(string s) {
 string reverseString(string s){
     string reversed = "";
     for(int i = s.length() - 1; i >= 0; i--){
-        reversed +=s[i];
+        reversed += s[i];
     }
     return reversed;
 }
@@ -55,15 +55,15 @@ string infixToPrefix(string s){
                 ans += st.top();
                 st.pop();
             }
-            st.pop();
+            if(!st.empty()) st.pop(); 
         } else {
             if(s[i] == '^'){
-                while(!st.empty() && priority(s[i]) <= priority(st.top())){
+                while(!st.empty() && priority(s[i]) < priority(st.top())){
                     ans += st.top();
                     st.pop();
                 }
             } else {
-                    while(!st.empty() && priority(s[i]) < st.top()){
+                    while(!st.empty() && priority(s[i]) <= st.top()){
                         ans += st.top();
                         st.pop();
                     }
@@ -74,7 +74,7 @@ string infixToPrefix(string s){
     }
     while(!st.empty()){
         ans += st.top();
-        st.pop();
+        if(!st.empty()) st.pop(); 
     }
     return reverseString(ans);
 }
