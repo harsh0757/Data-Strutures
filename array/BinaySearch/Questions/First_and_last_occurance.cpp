@@ -52,6 +52,8 @@ pair<int, int> firstAndLastPosition(int arr[], int target, int size)
 
 int main()
 {
+// TC --> 2 * O(logN)
+// SC --> O(1)
     int arr[] = {2, 4, 6, 8, 8, 8, 11, 13};
     int target = 8;
     int size = 8;
