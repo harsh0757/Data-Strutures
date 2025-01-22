@@ -19,5 +19,5 @@ int main() {
     int arr[] = {1,2,3,3,5,8,9,9,9,11};
     int target = 11;
     int size = 10;
-    cout<<"The upper bound for the target "<<target<< " is : "<<upperBound(arr, size, target)<<endl;
+    cout<<"The upper bound for the target "<<target<< " is "<<upperBound(arr, size, target)<<endl;
 }
