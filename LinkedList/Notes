@@ -1,5 +1,6 @@
 -->Linear data-Structure formed by collection of nodes
 -->Node : combination of data and address of next node
+it is not in contigious memory location like array
 
 Why LL is needed?
 -->Dynamic data-Structure
