@@ -1,70 +1,78 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
 struct Node {
     int data;
-    Node *next;
-    Node(int data)
-    {
+    Node* next;
+    Node* prev;
+
+    Node(int data){
         this->data = data;
-        this->next = NULL;
+        prev = NULL;
+        next = NULL;
     }
 
-    ~Node()
-    {
+    ~Node(){
         int value = this->data;
         if(this->next != NULL){
             this->next = NULL;
+            this->prev = NULL;
             delete next;
         }
-        cout<<"Memory is free for node with data : "<<value<<endl;
+        cout<<"Memory is free from the node for : "<<value<<endl;
     }
 };
 
-void insertAtHead(Node *&head, int data)
-{
-    Node *temp = new Node(data);
+void insertAtHead(Node* &head, int data) {
+    Node* temp = new Node(data);
     temp->next = head;
+    head->prev = temp;
     head = temp;
 }
 
-void insertAtTail(Node *&tail, int data)
-{
-    Node *temp = new Node(data);
+void insertAtTail(Node* &tail, int data) {
+    Node* temp = new Node(data);
     tail->next = temp;
+    temp->prev = tail;
     tail = temp;
 }
 
-void insertAtPosition(Node *&head, Node *&tail, int position, int data)
-{
-    if (position == 1)
-    {
+void insertAtPosition(Node* &head, Node* &tail, int position, int data) { 
+    if(position == 1){
         insertAtHead(head, data);
         return;
     }
-    Node *temp = head;
+
+    Node* temp = head;
     int cnt = 1;
-    while (cnt < position - 1)
-    {
+    while(cnt < position - 1){
         temp = temp->next;
         cnt++;
     }
 
-    if (temp->next == NULL)
-    {
+    if(temp == NULL){
         insertAtTail(tail, data);
         return;
     }
-
-    Node *nodeToInsert = new Node(data);
+    
+    Node* nodeToInsert = new Node(data);
     nodeToInsert->next = temp->next;
+    nodeToInsert->prev = temp;
+    if(temp->next != NULL){
+        temp->next->prev = nodeToInsert;
+    }
     temp->next = nodeToInsert;
 }
 
-void deleteNode(Node* &head, int position) {
+void deleteNode(Node* &head, int position){
+    if(head == NULL){
+        cout<<"List is empty. I have saved you from segmentation fault"<<endl;
+        return;
+    }
     if(position == 1){
         Node* temp = head;
         head = head->next;
+        temp->next->prev = NULL;
         temp->next = NULL;
         delete temp;
     } else {
@@ -72,21 +80,22 @@ void deleteNode(Node* &head, int position) {
         Node* prev = NULL;
 
         int cnt = 1;
-        while(cnt < position){
+        while(cnt < position) {
             prev = curr;
             curr = curr->next;
             cnt++;
         }
         prev->next = curr->next;
+        if(curr->next != NULL){
+            curr->next->prev = prev;
+        }
         curr->next = NULL;
+        curr->prev = NULL;
         delete curr;
     }
 }
 
 void print(Node* &head){
-    if(head == NULL){
-        return;
-    }
     Node* temp = head;
     while(temp != NULL){
         cout<<temp->data<<" ";
@@ -95,17 +104,25 @@ void print(Node* &head){
     cout<<endl;
 }
 
-int main() {
+int main(){
     Node* node1 = new Node(10);
     Node* head = node1;
     Node* tail = node1;
 
     insertAtHead(head, 9);
-    insertAtHead(head, 8);
-    insertAtTail(tail, 11);
-    insertAtTail(tail, 13);
-    insertAtPosition(head, tail, 5, 12);
     print(head);
-    deleteNode(head, 5);
+    insertAtHead(head, 8);
+    print(head);
+    insertAtHead(head, 7);
+    print(head);
+    insertAtTail(tail, 11);
+    print(head);
+    insertAtTail(tail, 13);
+    print(head);
+    insertAtTail(tail, 14);
+    print(head);
+    insertAtPosition(head, tail, 6, 12);
+    print(head);
+    deleteNode(head, 8);
     print(head);
 }

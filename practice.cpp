@@ -1,111 +1,91 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-void printArray(int arr[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
+class Node{
+public:
+    int data;
+    Node* next = NULL;
+
+    Node(int data) {
+        this->data = data;
+        this->next = NULL;
     }
-    cout << endl;
-}
 
-bool linearSearch(int arr[], int size, int key)
-{
-    for (int i = 0; i < size; i++)
-    {
-        if (arr[i] == key)
-        {
-            return true;
+    ~Node(){
+        int value = this->data;
+        if(this->next != NULL){
+            delete next;
+            this->next = NULL;
         }
+        cout<<"Memory Released for node : "<<value<<endl;
     }
-    return false;
+};
+
+void insertAtHead(Node* &head, int data){
+    Node* temp = new Node(data);
+    temp->next  = head;
+    head = temp;
 }
 
-bool binarySearch(int arr[], int size, int key)
-{
-    int start = 0;
-    int end = size - 1;
-    int mid = start + (end - start) / 2;
+void insertAtTail(Node* &tail, int data){
+    Node* temp = new Node(data);
+    tail->next = temp;
+    tail = temp;
+}
 
-    while (start <= end)
-    {
-        if (arr[mid] == key)
-        {
-            return mid;
-        }
-
-        if (arr[mid] < key)
-        {
-            start = mid + 1;
-        }
-        else
-        {
-            end = mid - 1;
-        }
-        mid = start + (end - start) / 2;
+void insertAtPosition(Node* &head, Node* &tail, int position, int data){
+    if(position == 1){
+        insertAtHead(head, data);
+        return;
     }
-    return false;
+
+    Node* temp = head;
+    int cnt = 1;
+    while(cnt < position - 1){
+        temp = temp->next;
+        cnt++;
+    }
+
+    if(temp->next == NULL){
+        insertAtTail(tail, data);
+        return;
+    }
+    
+    Node* nodeToInsert = new Node(data);
+    nodeToInsert->next = temp->next;
+    temp->next = nodeToInsert;
 }
 
-void bubbleSort(int arr[], int size)
-{
-    bool swapped = false;
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(arr[j], arr[j + 1]);
-                swapped = true;
-            }
+void deleteNode(Node* &head, int position){
+    if(position == 1){
+        Node* temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+    } else {
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int cnt = 1;
+        while(cnt < position){
+            prev = curr;
+            curr = curr->next;
+            cnt++;
         }
-        if (swapped == true)
-        {
-            break;
-        }
+        prev->next = curr->next;
+        curr->next = NULL;
+        delete curr;
     }
 }
 
-void selectionSort()
-{
-}
-
-void insertionSort()
-{
-}
-
-void spiralPrint()
-{
-}
-
-void wavePrint()
-{
-}
-
-void largestRowSum()
-{
-}
-
-void rowWiseSum()
-{
-}
-
-int main(int argc, char const *argv[])
-{
-    int arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-    int size = 10;
-
-    /*bool res = linearSearch(arr,size,6);
-    if(res){
-        cout<<"Element is present"<<endl;
+void print(Node* &head){
+    Node* temp = head;
+    while(temp != NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
     }
-    else {
-        cout<<"Element is not present"<<endl;
-    }
-    */
-    bubbleSort(arr, size);
-    printArray(arr, size);
-    return 0;
+    cout<<endl;
+}
+
+int main(){
 }
