@@ -24,7 +24,7 @@ void traverseLeaf(Node* root){
 void traverseRight(Node* root){
     if(root == NULL || (root->left == NULL && root->right == NULL)) return;
     if(root->right) traverseRight(root->right);
-    else traverseRight(root->right);
+    else traverseRight(root->left);
 
     cout<<root->data<<" ";
 }
