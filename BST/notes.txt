@@ -1,0 +1,8 @@
+(.) leftNode < rootNode < rightNode
+(.) left subtree should follow 1 point 
+(.) right subtree should follow first point
+
+then we call it a Binary search tree
+
+why BST --> all the height of binary tree kept as log(N);
+in the case of degenerated binary tree it will take the time complexity to O(n);

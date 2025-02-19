@@ -15,7 +15,7 @@ public:
     }
 };
 
-Node* buildTree(Node* root){
+Node* buildTree(Node*& root){
 
     cout<<"Enter the data for Node : "<<endl;
     int data;
