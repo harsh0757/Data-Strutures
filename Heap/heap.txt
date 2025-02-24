@@ -1,0 +1,10 @@
+Node --> ith index
+left child --> 2*i 
+right child --> 2 * i + 1
+parent --> i/2
+
+steps -->
+1.insert the node at end
+2.take it to correct position
+check from the parent if you are on the correct place
+if parent is small then swap and repeat the process
