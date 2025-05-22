@@ -4,10 +4,12 @@ using namespace std;
 struct Node {
     int data;
     Node *next;
+    Node* bottom; // for faltten LL question
     Node(int data)
     {
         this->data = data;
         this->next = NULL;
+        this->bottom = NULL;
     }
 
     ~Node()
