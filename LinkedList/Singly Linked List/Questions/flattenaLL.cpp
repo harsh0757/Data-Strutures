@@ -4,6 +4,39 @@
 #include "/workspaces/Data-Strutures/LinkedList/Singly Linked List/Questions/linkedListStructure.cpp"
 using namespace std;
 
+
+//optimised --> O(n1 + n2)
+Node* merge2Lists(Node* list1, Node* list2){
+    Node* dummyNode = new Node(-1);
+    Node* res = dummyNode;
+
+    while(list1 != NULL && list2 != NULL){
+        if(list1->data < list2->data){
+            res->bottom  = list1;
+            res = list1;
+            list1 = list1->bottom;
+        } else {
+            res->bottom = list2;
+            res= list2;
+            list2 = list2->bottom;
+        }
+        res->next = NULL;
+    }
+
+    if(list1) res->bottom = list1;
+    else res->bottom = list2;
+
+    return dummyNode->bottom;
+}
+
+//for multiple lists
+Node* optimised(Node* head){
+    if(head == NULL || head->next == NULL) return head;
+
+    Node* mergedhead = optimised(head->next);
+    return merge2Lists(head, mergedhead);
+}
+
 //brute force
 // 1. add the LL to an array
 // 2. Sort the array 
@@ -52,20 +85,20 @@ int main() {
     // Create a linked list with bottom pointers
     Node* head = new Node(5);
     head->bottom = new Node(14);
-    
+
     head->next = new Node(10);
-    head->next->bottom = new Node(4);
-    
+    head->next->bottom = new Node(11);  // Fix 4 -> 11
+
     head->next->next = new Node(12);
-    head->next->next->bottom = new Node(20);
-    head->next->next->bottom->bottom = new Node(13);
-    
+    head->next->next->bottom = new Node(13);  // 13 < 20
+    head->next->next->bottom->bottom = new Node(20);
+
     head->next->next->next = new Node(7);
     head->next->next->next->bottom = new Node(17);
 
     // Flatten the linked list
     // and print the flattened list
-    Node* flattened = flattenLL(head);
+    Node* flattened = optimised(head);
     cout << "\nFlattened linked list: ";
     printFlattenedLL(flattened);
 
