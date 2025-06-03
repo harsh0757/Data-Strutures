@@ -1,0 +1,8 @@
+Templates allow you to write generic and reusable code. Instead of writing the same function/class multiple times for different data types, 
+you write it once using a template.
+
+There are two main types:
+
+1. Function Templates
+
+2. Class Templates
