@@ -1,29 +1,33 @@
 #include <iostream>
 using namespace std;
 
-int firstOccurance(int arr[], int size, int target){
-    int high = size - 1; int low = 0;
+int firstOccurance(vector<int>& arr, int target){
+    int high = arr.size() - 1, low = 0;
     int first = -1;
     while(low<=high){
         int mid = low + (high - low) / 2;
         if(arr[mid] == target){
             first = mid;
-            high = mid - 1;  //need first occurance so will go left and see
-        } else {
-            low = mid + 1;
+            high = mid - 1;
+        } else if(arr[mid] < target){  
+            low = mid + 1;  
+        }else {
+            high = mid - 1;
         }
     }
     return first;
 }
 
-int lastOccurance(int arr[], int size, int target){
-    int high = size - 1; int low = 0;
+int lastOccurance(vector<int>& arr , int target){
+    int high = arr.size() - 1; int low = 0;
     int last = -1;
     while(low<=high){
         int mid = low + (high - low) / 2;
         if(arr[mid] == target){
             last = mid;
             low = mid + 1;  //need first occurance so will go left and see
+        } else if(arr[mid] < target) {
+            low = mid + 1;
         } else {
             high = mid - 1;
         }
@@ -31,11 +35,11 @@ int lastOccurance(int arr[], int size, int target){
     return last;
 }
 
-pair<int, int> firstAndLastPosition(int arr[], int target, int size)
+pair<int, int> firstAndLastPosition(vector<int>& arr , int target)
 {
-    int first = firstOccurance(arr, size, target);
+    int first = firstOccurance(arr, target);
     if (first == -1) return {-1, -1};
-    int last  = lastOccurance(arr, size, target);
+    int last  = lastOccurance(arr, target);
     return {first, last};
 }
 
@@ -43,8 +47,7 @@ int main()
 {
 // TC --> O(logN)
 // SC --> O(1)
-    int arr[] = {2, 4, 6, 8, 8, 8, 11, 13};
-    int target = 8;
-    int size = 8;
-    cout << "First and last occurance of " << target << " is : {" << firstAndLastPosition(arr, target, size).first << ", " << firstAndLastPosition(arr, target, size).second << "}" << endl;
+    vector<int> arr = {2, 4, 6, 8, 11, 13};
+    int target = 13;
+    cout << "First and last occurance of " << target << " is : {" << firstAndLastPosition(arr, target).first << ", " << firstAndLastPosition(arr, target).second << "}" << endl;
 }

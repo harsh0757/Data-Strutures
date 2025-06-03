@@ -1,6 +1,10 @@
 #include<iostream>
 using namespace std;
 
+//smallest index such that arr[index] > x
+                            //will get iterator pointing to index     //after subtracting the begin iterator will get the index
+// use the stl function ub = upper_bound(arr.begin(), arr.end(), x) - arr.begin()
+
 int upperBound(int arr[], int size, int x){
     int high = size - 1; int low = 0;
     int ans = size;
