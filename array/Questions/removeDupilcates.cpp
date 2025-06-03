@@ -29,6 +29,6 @@ int removeDuplicates(vector<int> &arr){
 
 int main(){
     vector<int> arr = {1,1,2,2,2,3,3};
-    // cout<<removeDuplicates(arr)<<endl;
-    cout<<optimal(arr)<<endl;
+    cout<<removeDuplicates(arr)<<endl;
+    // cout<<optimal(arr)<<endl;
 }
