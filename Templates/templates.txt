@@ -1,8 +1,16 @@
-Templates allow you to write generic and reusable code. Instead of writing the same function/class multiple times for different data types, 
-you write it once using a template.
+Templates allow you to write generic and reusable code. 
+Instead of writing the same function/class multiple times for different data types, you write it once using a template.
+
+what are Templates?
+Templates are the blueprint for functions or classes that work with any datatype
 
 There are two main types:
 
 1. Function Templates
 
 2. Class Templates
+
+why to use them?
+--> To eliminate text duplication
+--> Enable type dependent programming
+--> foundation of STL (vector, map)

@@ -1,0 +1,13 @@
+size_t is an unsigned integer type used to represent the size of objects in bytes or array indices. 
+It is defined in <stddef.h> (C) and <cstddef> (C++).
+
+✅ Use size_t:
+- sizeof
+- array/vector/string indexing
+- count of elements
+- loop index over containers
+
+❌ Don’t use size_t:
+- When result can be negative
+- When using general-purpose integers
+- For signed math or user inputs
