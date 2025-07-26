@@ -1,0 +1,10 @@
+kadane's algorithm
+
+Intuition: Our approach is to store the starting index and the ending index of the subarray. 
+Thus we can easily get the subarray afterward without actually storing the subarray elements.
+If we carefully observe our algorithm, we can notice that the subarray always starts at the particular index 
+where the sum variable is equal to 0, and at the ending index, the sum always crosses the previous maximum sum(i.e. maxi).
+
+So, we will keep a track of the starting index inside the loop using a start variable.
+We will take two variables ansStart and ansEnd initialized with -1. And when the sum crosses the maximum sum, we will set ansStart to the start variable and ansEnd to the current index i.e. i.
+The rest of the approach will be the same as Kadane’s Algorithm.
