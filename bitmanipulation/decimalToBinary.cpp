@@ -1,30 +1,30 @@
 #include<iostream>
 using namespace std;
 
-string reverse(string str){
-    int len = str.length();
+void reverse(string str){
+    int length = str.length();
     int start = 0;
-    int end = len - 1;
+    int end = length - 1;
 
-    while(start <= end){
+    while(start < end){
         swap(str[start++], str[end--]);
     }
-    return str;
 }
 
-string decimalToBinary(int num){
-    string result = "";
+string convert_to_decimal(int n){
+    string res = "";
+    while(n > 0){
+        if(n%2 == 1) res += '1';
+        else res += '0';
 
-    while(num > 0){
-        if(num%2 == 1) result += '1';
-        else result += '0';
-        num = num/2;
+        n = n/2;
     }
-    result = reverse(result);
-    return result;
+    reverse(res);
+    return res;
 }
 
 int main(){
-    int num = 13;
-    cout<<decimalToBinary(num)<<endl;
+    int n;
+    cin>>n;
+    cout<<convert_to_decimal(n)<<endl;
 }
