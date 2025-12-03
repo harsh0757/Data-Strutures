@@ -75,7 +75,7 @@ vector<int> topView(Node* root){
     vector<int> ans;
 
     if(root == NULL) return ans;
-
+    //first is HD and second is node data
     map<int, int> topNode;
     queue<pair<Node*, int>> q;
     q.push(make_pair(root, 0));
