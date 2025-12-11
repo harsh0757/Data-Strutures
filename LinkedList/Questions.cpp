@@ -9,6 +9,141 @@ public:
     Node(int d) : data(d), next(NULL){}
 };
 
+//Q13 find the starting point of the loop in linked list 
+Node* startPoint(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        
+        if(fast == slow){
+            slow = head;
+            while(fast != slow){
+                slow = slow->next;
+                fast = fast->next;
+            }
+            return slow;
+        } 
+    }
+    return NULL;
+}
+
+//Q12 Delete the middle node of linked list optimal approach
+Node* deleteMiddle(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    Node* prev = NULL;
+    
+    while(fast != NULL &&fast->next != NULL){
+        prev = slow;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    prev->next = slow->next;
+    slow->next = NULL;
+    delete slow;
+    return head;
+}
+
+//Q11 find the Length of the loop in linked list brute and optimal
+int loopLength_op(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        
+        if(slow == fast){
+            int Length = 1;
+            fast = fast->next; //start from one ahead
+            
+            while(fast != slow){
+                fast = fast->next;
+                Length++;
+            }
+            return Length;
+        }
+    }
+    return 0;
+}
+
+int loopLength(Node* head){
+    map<Node*, int> mpp;
+    Node* temp = head;
+    int timer = 1;
+    
+    while(temp != NULL){
+        if(mpp.find(temp) != mpp.end()){
+            int value = mpp[temp];
+            return timer - value;
+        }
+        mpp[temp] = timer;
+        timer++;
+        temp = temp->next;
+    }
+    return 0;
+}
+
+//Q10 detect the cycle in the linked list brute and optimal
+bool detectCycle_op(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        
+        if(slow == fast) return true;
+    }
+    return false;
+}
+
+bool detectCycle(Node* head){
+    map<Node*, int> mpp;
+    Node* temp = head;
+    
+    while(temp != NULL){
+        if(mpp.find(temp) != mpp.end()) return true;
+        mpp[temp] = 1;
+        temp = temp->next;
+    }
+    return false;
+}
+
+// Q9 Find the middle of the linked list brute and optimal
+Node* middle_op(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+// Q9 Find the middle of the linked list
+Node* middle(Node* head){
+    Node* temp = head;
+    int count = 0;
+    
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+    
+    temp = head;
+    int middleNode = (count / 2) + 1;
+    
+    while(--middleNode){
+        temp = temp->next;
+    }
+    return temp;
+}
+
 //Q8 Get the intersection point of Y linked list 2 methods
 Node* getIntersectionNode_op(Node* head1, Node* head2){
     Node* t1 = head1;
