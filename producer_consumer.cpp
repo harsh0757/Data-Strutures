@@ -5,6 +5,79 @@
 #include <condition_variable>
 #include <chrono>
 
+//with unbounded buffer
+
+class UnboundedBuffer {
+private:
+    std::queue<int> buffer;
+    std::mutex mtx;
+    std::condition_variable cv_data_available;
+
+public:
+    // Producer never waits; it just pushes and notifies
+    void produce(int item) {
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            buffer.push(item);
+            std::cout << "Produced: " << item << " | Buffer size: " << buffer.size() << std::endl;
+        }
+        cv_data_available.notify_one(); // Wake up one waiting consumer
+    }
+
+    // Consumer waits only if the buffer is empty
+    int consume() {
+        std::unique_lock<std::mutex> lock(mtx);
+        
+        // Wait until there is at least one item
+        cv_data_available.wait(lock, [this]() { return !buffer.empty(); });
+
+        int item = buffer.front();
+        buffer.pop();
+        std::cout << "Consumed: " << item << " | Buffer size: " << buffer.size() << std::endl;
+        
+        return item;
+    }
+};
+
+void producer_thread(UnboundedBuffer& buf) {
+    for (int i = 1; i <= 10; ++i) {
+        buf.produce(i);
+        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Fast production
+    }
+}
+
+void consumer_thread(UnboundedBuffer& buf) {
+    for (int i = 0; i < 10; ++i) {
+        buf.consume();
+        std::this_thread::sleep_for(std::chrono::milliseconds(150)); // Slow consumption
+    }
+}
+
+int main() {
+    UnboundedBuffer shared_buffer;
+
+    std::thread t1(producer_thread, std::ref(shared_buffer));
+    std::thread t2(consumer_thread, std::ref(shared_buffer));
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+
+// Key Differences in Unbounded Implementation
+
+// One Condition Variable: You only need to signal the consumer. Since the producer never "waits" for space, a cv_not_full is unnecessary.
+// Producer uses lock_guard: Because the producer doesn't need to wait and unlock inside a loop, std::lock_guard is cleaner and safer than std::unique_lock.
+// Memory Warning: It can lead to memory exhaustion if the producer is much faster than the consumer over a long period.
+
+//  Why choose this over Bounded?
+
+// Simplicity: Use this when you are certain the consumer can eventually keep up and you want to reduce synchronization overhead.
+// Performance: The producer is never blocked, ensuring the production side of your application stays high-performance and low-latency. 
+
+
+//with bounded buffer
 class BoundedBuffer {
 private:
     std::queue<int> buffer;
