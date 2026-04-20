@@ -1,0 +1,19 @@
+Intro to Graph
+
+for anything called a graph it needed nodes and edges that's all
+can be open structure
+
+directed or undirected Graph
+directed can go in one directions and udirection can go in both directions
+
+#Cycles in Graph
+start from node and end at same node --> undirected cyclic graph 
+start from node and end at another node --> directed acyclic graph
+
+#what is a path?
+contain lot of nodes and every node or vertices and each of them are reachable
+A node cannot appear twice in a path it can only appear once
+and adjacent node must have an edge b/w them
+
+#Degree in graph
+Number of nodes incoming and outgoing to a node is called degree
